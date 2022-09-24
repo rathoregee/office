@@ -50,3 +50,6 @@ docker commands:
 docker-compose up
 docker compose down
 docker compose stop
+
+  - POSTGRES_USER=postgres
+  - POSTGRES_PASSWORD=postgres
