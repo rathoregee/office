@@ -1,0 +1,20 @@
+@import 'Invoice';
+
+.invoice {
+  max-width: $invoiceMaxWidth;
+  border: 1px solid $tableBorderColor;
+  border-radius: $borderRadius;
+  background: $bgColor;
+  font-size: 3px!important;
+}
+
+.reportHeader{
+  font-size: 4px!important;
+  font-weight: bold;
+  text-align: center;
+  color: blue;
+}
+
+.topLabel{
+  color: red;
+}
