@@ -1,0 +1,65 @@
+# Reference: https://docs.gitlab.com/ee/ci/yaml/README.html
+# Linter: https://gitlab.com/mburolla/serverless-ci-deploy/-/ci/lint
+stages:
+ - deploy
+ - test
+
+################################################################################
+# STAGING                                                                      #
+################################################################################
+
+deploy_stage: 
+  stage: deploy  
+  image: node:latest
+  tags:
+    - cicd
+  only:
+    refs:
+      - main
+  before_script:
+    - npm config set prefix /usr/local
+    - sudo npm install -g serverless
+    - sudo npm install
+    - sudo npm run build
+  script:  
+    - echo 'deploy'   
+   # - ~/.local/bin/aws s3 cp s3://sls-config/stage.json ./config/stage.json
+    #- sls deploy --verbose
+    - serverless deploy --stage qa --verbose
+  environment: qa
+  #environment: stage
+
+test_stage:
+  stage: test  
+  image: node:latest
+  only:
+    refs:
+      - master
+  before_script:
+    - npm install
+  script:     
+    - npm test
+  environment: stage
+
+################################################################################
+# PRODUCTION                                                                   #
+################################################################################
+
+deploy_prod: 
+  stage: deploy  
+  image: node:latest
+  only:
+    refs:
+      - master
+  before_script:
+    - npm config set prefix /usr/local
+    - npm install -g serverless
+    - npm install
+   # - apt-get update
+   # - apt-get -y install python3-pip
+   # - pip3 install awscli --upgrade --user
+  script:
+    - echo 'deploy' 
+    #- ~/.local/bin/aws s3 cp s3://sls-config/prod.json ./config/prod.json
+    - sls deploy --stage qa --verbose
+  environment: qa

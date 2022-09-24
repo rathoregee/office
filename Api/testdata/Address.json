@@ -1,0 +1,53 @@
+{
+  "EntityType": "Address",
+  "Line": [ "Riding Court" ],
+  "Town": "Datchet",
+  "County": "Berkshire",
+  "Postcode": "TW12 3XZ",
+  "DXNumber": null,
+  "DXExchange": null,
+  "Country": "England",
+  "EmailAddress": [
+    {
+      "EmailAddress": "test@co.uk",
+      "EmailAddressDescription": "office email",
+      "PrefixOnly": false,
+      "NeedsPrefix": false,
+      "IsPersonal": false,
+      "MainEmail": true
+    }
+  ],
+  "PhoneNumber": [
+    {
+      "Number": "0204585858445",
+      "NumberDescription": "Office",
+      "IsPhone": true,
+      "IsFax": false,
+      "IsMobile": false,
+      "ExtensionOnly": false,
+      "MainNumber": true
+    },
+    {
+      "Number": "075485858685",
+      "NumberDescription": "Personal",
+      "IsPhone": true,
+      "IsFax": false,
+      "IsMobile": true,
+      "ExtensionOnly": false,
+      "MainNumber": false
+    }
+  ],
+  "EntityId": "b2a2e683-3716-42fb-8750-90031d037c82",
+  "EntityChangeType": "Insert",
+  "Name": null,
+  "Audit": {
+    "Application": {
+      "Create": {
+        "ApplicationStaffUUID": "A632DD58-AEBD-4CC6-923E-A1769C85CE5D",
+        "ApplicationStaffId": "MASTER",
+        "DateTimeUTC": "2018-10-22T09:49:35.723"
+      },
+      "Change": null
+    }
+  }
+}

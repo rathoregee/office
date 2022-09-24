@@ -1,0 +1,94 @@
+service: apigateway-emailservice-func
+frameworkVersion: '3'
+
+custom:
+  deploymentBucket:
+    accelerate: true
+    blockPublicAccess: true
+    BlockPublicAcls: true
+    BlockPublicPolicy: true
+    IgnorePublicAcls: true
+    RestrictPublicBuckets: true
+    tags:
+      - Key: Environment
+        Value: development
+    versioning: true
+  dotenv:
+    include:
+      - LOG_LEVEL
+      - LANDING_ZONE_BUCKET
+  prune:
+    automatic: true
+    number: 5
+
+functions:
+  healthcheck:
+    events:
+      - http:
+          cors:
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - PlatformTenantId
+            origin: '*'
+          method: get
+          path: healthcheck
+    handler: dist/functions/router.handler
+    name: ${env:STAGE_NAME}-healthcheck
+  emailservice:
+    events:
+      - http:
+          cors:
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - PlatformTenantId
+            origin: '*'
+          method: post
+          path: sendemail
+    handler: dist/functions/email.handler
+    name: ${env:STAGE_NAME}-emailservice    
+package:
+  artifact: ${opt:artifact,""}
+  exclude:
+   # - ./**/*
+    - '!node_modules/**/*'
+  include:
+    - ./**/*
+plugins:
+  - serverless-bundle
+  - serverless-offline
+  - serverless-prune-plugin
+  - serverless-dotenv-plugin
+  - serverless-deployment-bucket
+provider:
+  environment:
+    STAGE_NAME: ${env:STAGE_NAME}
+  deploymentBucket:
+    name: apigateway-${env:STAGE_NAME}-emailservice
+    serverSideEncryption: AES256
+    IamRoleStatements:   
+    - Effect: 'Allow'
+      Action:
+       - 'lambda:InvokeFunction'
+       - 'ses:SendEmail'
+       - 'ses:SendRawEmail'
+       - 'logs:CreateLogGroup'
+       - 'logs:CreateLogStream'
+       - 'logs:PutLogEvents'
+      Resource: '*'    
+  name: aws
+  region: eu-west-1
+  runtime: nodejs16.x
+  stage: ${env:STAGE_NAME}           
+
+
+
