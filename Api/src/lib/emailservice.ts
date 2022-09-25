@@ -64,16 +64,7 @@ export class EmailService implements IEmail {
       let list: Attachment[] = [];
       list.push(params.attachment);
       mail.attachments = list;
-      // params.attachments.forEach((file) => {
-      //   list.push({
-      //     filename: file.filename,
-      //     content: file.content,
-      //     contentType: file.contentType,
-      //   });
-      // });
-      // if (list.length > 0) {
-      //   mail.attachments = list;
-      // }
+      
     }
     return mail;
   };
