@@ -6,7 +6,7 @@ import { IEmail } from './IEmail';
 import { Attachment } from 'nodemailer/lib/mailer';
 /*eslint-disable */
 @injectable()
-export class EmailService implements IEmail {  
+export class EmailService implements IEmail {
     async send(
         logger: any,
         transporter: Transporter,

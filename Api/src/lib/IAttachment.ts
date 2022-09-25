@@ -3,5 +3,4 @@ export interface IAttachment {
     filename: string;
     contentType: string;
     content: string;
-  }
-  
+}
