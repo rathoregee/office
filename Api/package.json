@@ -18,17 +18,18 @@
   "author": "kamran bashir rathore",
   "license": "private",
   "dependencies": {
+    "aws-lambda-multipart-parser": "^0.1.3",
     "dotenv": "^16.0.1",
+    "fluentvalidation-ts": "^2.2.2",
+    "inversify": "^6.0.1",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^2.1.4",
     "mimemessage": "^1.0.5",
     "nodemailer": "^6.7.7",
-    "serilogger": "^0.4.1",
-    "fluentvalidation-ts": "^2.2.2",
     "parse-multipart-data": "^1.3.0",
-    "aws-lambda-multipart-parser": "^0.1.3",
-    "inversify": "^6.0.1",
-    "reflect-metadata": "^0.1.13"
+    "pg-promise": "^10.12.0",
+    "reflect-metadata": "^0.1.13",
+    "serilogger": "^0.4.1"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.2",

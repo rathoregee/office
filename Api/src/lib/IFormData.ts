@@ -1,4 +1,4 @@
-import { IAttachment } from "./IAttachment";
+import { IAttachment } from './IAttachment';
 
 export interface IFormData {
   correlationId: string;
