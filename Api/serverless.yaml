@@ -2,6 +2,12 @@ service: office
 frameworkVersion: '3'
 
 custom:
+  serverless-offline:
+    httpsProtocol: "dev-certs"
+    httpPort: 4000
+    stageVariables:
+      stage: "dev"
+
   deploymentBucket:
     accelerate: true
     blockPublicAccess: true
@@ -38,7 +44,7 @@ functions:
           method: get
           path: healthcheck
     handler: dist/functions/router.handler
-    name: ${env:STAGE_NAME}-healthcheck
+    name: ${opt:stage}-healthcheck
   emailservice:
     events:
       - http:
@@ -55,7 +61,7 @@ functions:
           method: post
           path: sendemail
     handler: dist/functions/email.handler
-    name: ${env:STAGE_NAME}-emailservice    
+    name: ${opt:stage}-emailservice    
 package:
   artifact: ${opt:artifact,""}
   exclude:
@@ -71,9 +77,9 @@ plugins:
   - serverless-deployment-bucket
 provider:
   environment:
-    STAGE_NAME: ${env:STAGE_NAME}
+    stage: ${opt:stage}
   deploymentBucket:
-    name: office-${env:STAGE_NAME}
+    name: office-${opt:stage}
     serverSideEncryption: AES256
     IamRoleStatements:   
     - Effect: 'Allow'
@@ -88,4 +94,4 @@ provider:
   name: aws
   region: eu-west-1
   runtime: nodejs16.x
-  stage: ${env:STAGE_NAME}
+  

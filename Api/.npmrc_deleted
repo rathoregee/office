@@ -1,3 +1,0 @@
-registry=https://nexus.cluster.build.ngiris.io/repository/npm-group/
-//nexus.cluster.build.ngiris.io/repository/npm-group/:_authToken=${NPM_TOKEN}
-//nexus.cluster.build.ngiris.io/repository/npm-hosted/:_authToken=${NPM_TOKEN}

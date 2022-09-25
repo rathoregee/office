@@ -86,7 +86,7 @@ describe("Authorizer", () => {
       return Promise.resolve(decoded);
     });
     //when
-    debugger
+    
     const result = await sut.validate(event);
     //then
     expect(result.policyDocument.Version).to.eql("2012-10-17");

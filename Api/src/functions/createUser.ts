@@ -9,11 +9,11 @@ const handler: APIGatewayProxyHandler = async (event : APIGatewayProxyEvent, con
 	}
 
 	try {
-        debugger
+       
 		let data  = await dynamoDB.get(params).promise();
-        debugger
+        
         response = data.Item;
-        debugger
+        
 	} catch (e) {
 		response = { error: 'task not found' }
 	}  

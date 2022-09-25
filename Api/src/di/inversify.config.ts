@@ -3,7 +3,7 @@ import { Container } from "inversify";
 import "reflect-metadata";
 import { TYPES } from "./types";
 import { IEmail } from "../lib/IEmail";
-import { EmailService } from "../lib/EmailService";
+import { EmailService } from "../lib/emailservice";
 import { IValidationResult } from "../validation/IValidationResult";
 import { ValidationResult } from "../validation/ValidationResult";
 
