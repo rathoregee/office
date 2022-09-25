@@ -73,7 +73,7 @@ provider:
   environment:
     STAGE_NAME: ${env:STAGE_NAME}
   deploymentBucket:
-    name: apigateway-${env:STAGE_NAME}-emailservice
+    name: office-${env:STAGE_NAME}
     serverSideEncryption: AES256
     IamRoleStatements:   
     - Effect: 'Allow'
