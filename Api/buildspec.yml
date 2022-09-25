@@ -35,9 +35,9 @@ phases:
       # - command
   pre_build:
     commands:
-      #- aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/apigateway-poc-func.zip --recursive | sort | tail -n 1 | awk '{print $4}' .
+      #- aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/office.zip --recursive | sort | tail -n 1 | awk '{print $4}' .
       - mkdir artifacts
-      - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/apigateway-poc-func.zip ./artifacts/
+      - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/office.zip ./artifacts/
       - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/serverless-state.json ./artifacts/
       - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/serverless.yml ./artifacts/
       - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/cloudformation-template-update-stack.json ./artifacts/
@@ -47,7 +47,7 @@ phases:
   build:
     commands:
       - STAGE_NAME=${CODEBUILD_INITIATOR##*/}
-      - serverless deploy --artifact ./artifacts/apigateway-poc-func.zip --force
+      - serverless deploy --artifact ./artifacts/office.zip --force
       - echo 'serverless deployed'
   post_build:
     commands:

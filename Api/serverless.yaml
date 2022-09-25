@@ -1,4 +1,4 @@
-service: apigateway-emailservice-func
+service: office
 frameworkVersion: '3'
 
 custom:
@@ -88,7 +88,4 @@ provider:
   name: aws
   region: eu-west-1
   runtime: nodejs16.x
-  stage: ${env:STAGE_NAME}           
-
-
-
+  stage: ${env:STAGE_NAME}

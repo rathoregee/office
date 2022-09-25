@@ -1,13 +1,13 @@
 {
-  "name": "df-global-emailservice",
+  "name": "office",
   "version": "1.0.0",
-  "description": "Serverless Framewrok Email service",
+  "description": "Serverless Framewrok for api services",
   "private": true,
   "main": "dist/functions/router.js",
   "scripts": {
     "build": "rimraf dist/ && tsc",
     "bundle": "serverless package --package artifacts && cpy artifacts/*.zip .",
-    "deploy": "serverless deploy --artifact apigateway-poc-func.zip --force",
+    "deploy": "serverless deploy --artifact office.zip --force",
     "test": "cross-env LOG_LEVEL=warn nyc --reporter=text mocha --reporter=spec",
     "test:ci": "nyc mocha",
     "test:html": "cross-env LOG_LEVEL=warn nyc --reporter=html --reporter=text-summary mocha --reporter=spec",
@@ -15,7 +15,7 @@
     "lint:fix": "eslint --fix src",
     "debug": "SET SLS_DEBUG=* && node --inspect node_modules\\serverless\\bin\\serverless offline -s dev"
   },
-  "author": "Dataflow group",
+  "author": "kamran bashir rathore",
   "license": "private",
   "dependencies": {
     "dotenv": "^16.0.1",
