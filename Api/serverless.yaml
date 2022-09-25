@@ -4,8 +4,10 @@ frameworkVersion: '3'
 custom:
   serverless-offline:  
     stageVariables:
-      stage: "dev"
-
+      stage: "dev"  
+  bundle:
+      ignorePackages:
+        - pg-native
   deploymentBucket:
     accelerate: true
     blockPublicAccess: true
