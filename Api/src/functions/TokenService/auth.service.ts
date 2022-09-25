@@ -4,9 +4,13 @@ import {
 } from 'aws-lambda';
 
 export default class AuthService {
+    /*eslint-disable */
     private logger: any;
+    /*eslint-disable */
     private jwt: any;
+    /*eslint-disable */
     private jwksClient: any;
+    /*eslint-disable */
     constructor(logger: any, jwt: any, jwksClient: any) {
         this.logger = logger;
         this.jwt = jwt;
@@ -18,7 +22,7 @@ export default class AuthService {
             'APIGatewayAuthorizerEvent? ${event}',
             JSON.stringify(event)
         );
-
+        /*eslint-disable */
         const { decoded, token }: { decoded: any; token: null } =
             this._extractJwt(event);
 
@@ -30,30 +34,30 @@ export default class AuthService {
 
         return await this._verifyJwt(key, token, token_issuer, event);
     };
-
+    /*eslint-disable */
     _getToken = (params: { type: string; authorizationToken: any }) => {
         if (!params.type || params.type !== 'TOKEN') {
             throw new Error(
-                'Expected \'event.type\' parameter to have value TOKEN'
+                "Expected 'event.type' parameter to have value TOKEN"
             );
         }
         const tokenString = params.authorizationToken;
         if (!tokenString) {
             throw new Error(
-                'Expected \'event.authorizationToken\' parameter to be set'
+                "Expected 'event.authorizationToken' parameter to be set"
             );
         }
         const match = tokenString.match(/^Bearer (.*)$/);
         if (!match || match.length < 2) {
             throw new Error(
-                'Invalid Authorization token - \'' +
+                "Invalid Authorization token - '" +
                     tokenString +
-                    '\' does not match \'Bearer .*\''
+                    "' does not match 'Bearer .*'"
             );
         }
         return match[1];
     };
-
+    /*eslint-disable */
     _getTokenFromHeader = (params: any) => {
         let tokenString = params?.headers.authorization;
 
@@ -61,24 +65,27 @@ export default class AuthService {
 
         if (!tokenString) {
             throw new Error(
-                'Expected \'event.authorizationToken\' parameter to be set'
+                "Expected 'event.authorizationToken' parameter to be set"
             );
         }
         const match = tokenString.match(/^Bearer (.*)$/);
         if (!match || match.length < 2) {
             throw new Error(
-                'Invalid Authorization token - \'' +
+                "Invalid Authorization token - '" +
                     tokenString +
-                    '\' does not match \'Bearer .*\''
+                    "' does not match 'Bearer .*'"
             );
         }
         return match[1];
     };
 
     _verifyJwt = async (
+        /*eslint-disable */
         key: any,
         token: null,
+        /*eslint-disable */
         token_issuer: any,
+        /*eslint-disable */
         event: any
     ) => {
         const signingKey = key.publicKey || key.rsaPublicKey;
@@ -97,7 +104,7 @@ export default class AuthService {
 
         return this._getPolicy(decoded, event);
     };
-
+    /*eslint-disable */
     _setupClient = (decoded: any) => {
         const kid = decoded.header.kid;
         const jwks_uri = decoded.payload.iss + '/.well-known/jwks.json';
@@ -118,7 +125,9 @@ export default class AuthService {
     };
 
     _getPolicy = (
+        /*eslint-disable */
         decoded: { scope: any; sub: string; username: string },
+        /*eslint-disable */
         event: any
     ): APIGatewayAuthorizerResult => {
         const scope = decoded.scope;
@@ -142,10 +151,14 @@ export default class AuthService {
     };
 
     _getPolicyReponse = (
+        /*eslint-disable */
         principalId: any,
+        /*eslint-disable */
         policyDocument: any,
+        /*eslint-disable */
         context: any
     ) => {
+        /*eslint-disable */
         const authResponse: any = {
             principalId,
             policyDocument,

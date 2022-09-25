@@ -1,5 +1,4 @@
 import {
-    Context,
     APIGatewayProxyHandler,
     APIGatewayProxyEvent,
     APIGatewayProxyResult,
@@ -14,11 +13,11 @@ import { transporter } from './transporter';
 
 const logger = new LoggerConfiguration().writeTo(new ConsoleSink()).create();
 const handler: APIGatewayProxyHandler = async (
-    event: APIGatewayProxyEvent,
-    context: Context
+    event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
     let reponseCode = 200;
     let reposneMessage = 'the email was sent successfully';
+    /*eslint-disable */
     let responseErrors: any = {};
     logger.info(`full httprequest data :${JSON.stringify(event)}`);
     try {
@@ -57,6 +56,8 @@ const processRequest = async (
     event: APIGatewayProxyEvent,
     reponseCode: number,
     reposneMessage: string,
+    /*eslint-disable */
+
     responseErrors: any
 ) => {
     const service: IEmail = myContainer.get<IEmail>(TYPES.IEmail);
@@ -70,6 +71,7 @@ const processRequest = async (
         data,
     }: {
         isValid: boolean;
+        /*eslint-disable */
         validationResult: any;
         data: IFormData;
     } = validation.validateResult(event);

@@ -5,6 +5,7 @@ import {
 import { JwksClient } from 'jwks-rsa';
 import { LoggerConfiguration, ConsoleSink } from 'serilogger';
 import AuthService from './TokenService/auth.service';
+/*eslint-disable */
 const jwt = require('jsonwebtoken');
 const logger = new LoggerConfiguration().writeTo(new ConsoleSink()).create();
 

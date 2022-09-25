@@ -1,14 +1,11 @@
 import {
-    Context,
-    APIGatewayProxyHandler,
-    APIGatewayProxyEvent,
+    APIGatewayProxyHandler,   
     APIGatewayProxyResult,
 } from 'aws-lambda';
 import { DynamoDB } from 'aws-sdk';
 const dynamoDB = new DynamoDB.DocumentClient();
 const handler: APIGatewayProxyHandler = async (
-    event: APIGatewayProxyEvent,
-    context: Context
+    
 ): Promise<APIGatewayProxyResult> => {
     let response;
     const params = {
