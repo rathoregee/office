@@ -1,6 +1,7 @@
 import {Context, APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
 
 const handler: APIGatewayProxyHandler = async (event : APIGatewayProxyEvent, context : Context) : Promise < APIGatewayProxyResult > => {   
+    debugger
     await Promise.resolve('123');
     console.log(event);
     console.log(context);

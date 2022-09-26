@@ -45,12 +45,12 @@ provider:
        - 'logs:PutLogEvents'
       Resource: '*'
 functions:
-  hello:
-    handler: dist/functions/hello.handler
+  healthcheck:
+    handler: dist/functions/router.handler
     events:
       - http:
-          name: ${opt:stage}-hello
-          path: users/hello
+          name: ${opt:stage}-healthcheck
+          path: healthcheck
           method: get
           private: true
           # authorizer:
