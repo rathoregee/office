@@ -44,10 +44,15 @@ const pgp = pgPromise({
 });
 
 export const db = pgp({
+    /*eslint-disable */
     host: process.env.PGHOST,
+    /*eslint-disable */
     port: process.env.PGPORT ? Number(process.env.PGPORT) : undefined,
+    /*eslint-disable */
     database: process.env.DATABASE,
+    /*eslint-disable */
     user: process.env.PGUSER,
+    /*eslint-disable */
     password: process.env.PGPASSWORD,
 });
 
