@@ -6,7 +6,7 @@ export interface Company {
     mobile: string;
     email: string;
 }
-7;
+
 export interface User {
     id: string;
     name: string;
@@ -22,6 +22,12 @@ export interface Role {
 }
 
 export interface Bank {
+    active: string;
+    name: string;
+    companyid: string;
+}
+
+export interface Apartment {
     active: string;
     name: string;
     companyid: string;
