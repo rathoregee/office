@@ -35,12 +35,12 @@ phases:
       # - command
   pre_build:
     commands:
-      #- aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/apigateway-poc-func.zip --recursive | sort | tail -n 1 | awk '{print $4}' .
+      #- aws s3 cp s3://apigateway-dev-deployments/serverless_nodejs/apigateway-poc-func.zip --recursive | sort | tail -n 1 | awk '{print $4}' .
       - mkdir artifacts
-      - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/apigateway-poc-func.zip ./artifacts/
-      - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/serverless-state.json ./artifacts/
-      - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/serverless.yml ./artifacts/
-      - aws s3 cp s3://apigateway-debug-deployments/serverless_nodejs/cloudformation-template-update-stack.json ./artifacts/
+      - aws s3 cp s3://apigateway-dev-deployments/serverless_nodejs/apigateway-poc-func.zip ./artifacts/
+      - aws s3 cp s3://apigateway-dev-deployments/serverless_nodejs/serverless-state.json ./artifacts/
+      - aws s3 cp s3://apigateway-dev-deployments/serverless_nodejs/serverless.yml ./artifacts/
+      - aws s3 cp s3://apigateway-dev-deployments/serverless_nodejs/cloudformation-template-update-stack.json ./artifacts/
       - echo 'downladed completed'
       # - command
       # - command

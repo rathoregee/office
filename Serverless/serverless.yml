@@ -31,9 +31,8 @@ provider:
   name: aws
   region: eu-west-1
   runtime: nodejs16.x
-  stage: ${env:STAGE}
   deploymentBucket:
-    name: apigateway-${env:STAGE}-deployments
+    name: apigateway-${opt:stage}-deployments
     serverSideEncryption: AES256
     IamRoleStatements:   
     - Effect: 'Allow'
@@ -50,6 +49,7 @@ functions:
     handler: dist/functions/hello.handler
     events:
       - http:
+          name: ${opt:stage}-hello
           path: users/hello
           method: get
           private: true
