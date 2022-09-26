@@ -6,3 +6,11 @@ export interface Company {
     mobile: string;
     email: string;
 }
+7;
+export interface User {
+    id: string;
+    name: string;
+    roleid: string;
+    companyid: string;
+    type: string;
+}
