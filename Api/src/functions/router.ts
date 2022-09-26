@@ -4,13 +4,15 @@ import {
     APIGatewayProxyEvent,
     APIGatewayProxyResult,
 } from 'aws-lambda';
-import { DatabaseContext } from '../db/DatabaseContext';
+import { Test } from '../lib/db/Test';
 const handler: APIGatewayProxyHandler = async (
     event: APIGatewayProxyEvent,
     context: Context
 ): Promise<APIGatewayProxyResult> => {
-    const dbcontext = new DatabaseContext();
-    const result = await dbcontext.GetComapnies();
+    debugger;
+    const db = new Test();
+    const result = await db.get();
+    console.log(event);
     console.log(context);
     return {
         statusCode: 200,
@@ -20,5 +22,6 @@ const handler: APIGatewayProxyHandler = async (
         body: JSON.stringify(result),
     };
 };
+
 
 export { handler };

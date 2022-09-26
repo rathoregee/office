@@ -1,9 +1,7 @@
 import pgPromise from 'pg-promise';
 import { LoggerConfiguration, ConsoleSink } from 'serilogger';
 const logger = new LoggerConfiguration().writeTo(new ConsoleSink()).create();
-import {
-    Company   
-} from './DataTypes';
+import { Company } from './DataTypes';
 
 const pgp = pgPromise({
     noLocking: true,
