@@ -1,10 +1,18 @@
 service: apigateway-poc-func
 plugins:
+  - serverless-bundle
+  - serverless-offline
   - serverless-prune-plugin
   - serverless-dotenv-plugin
   - serverless-deployment-bucket
 
 custom:
+  serverless-offline:  
+    stageVariables:
+      stage: "dev"  
+  bundle:
+      ignorePackages:
+        - pg-native
   deploymentBucket:
       versioning: true
       accelerate: true
@@ -18,64 +26,26 @@ custom:
   dotenv:
     include:
       - LOG_LEVEL
-      - LANDING_ZONE_BUCKET
-      - UPLOAD_ADDRESS_QUEUE_URL     
+      - LANDING_ZONE_BUCKET  
 provider:
   name: aws
-  runtime: nodejs12.x
   region: eu-west-1
+  runtime: nodejs16.x
+  stage: ${env:STAGE}
   deploymentBucket:
     name: apigateway-${env:STAGE}-deployments
-    #name: apigateway-poc-func-deployments
     serverSideEncryption: AES256
-  stage: ${env:STAGE}
-  # iamRoleStatements:
-  #   - Effect: "Allow"
-  #     Action:
-  #       - "sqs:SendMessage"
-  #       - "sqs:GetQueueUrl"
-  #       - "sqs:ListQueues"
-  #     Resource:
-  #       - ${env:UPLOAD_ADDRESS_QUEUE_ARN}
-  #       - ${env:UPLOAD_ADDRESS_MAPPING_QUEUE_ARN}       
-  #   - Effect: "Allow"
-  #     Action:
-  #       - "s3:GetObject"
-  #     Resource: arn:aws:s3:::${env:LANDING_ZONE_BUCKET}/*
-
+    IamRoleStatements:   
+    - Effect: 'Allow'
+      Action:
+       - 'lambda:InvokeFunction'
+       - 'ses:SendEmail'
+       - 'ses:SendRawEmail'
+       - 'logs:CreateLogGroup'
+       - 'logs:CreateLogStream'
+       - 'logs:PutLogEvents'
+      Resource: '*'
 functions:
-  # router:
-  #   handler: dist/functions/router.handler
-  #   name: sync-router-func
-  #   tracing: Active
-    # events:
-    #   - s3:
-    #       bucket: ${env:LANDING_ZONE_BUCKET}
-    #       event: s3:ObjectCreated:*
-    #       existing: true
-  createUser:
-    handler: dist/functions/createUser.handler
-    events:
-      - http:
-          path: users/create
-          method: post
-          private: true
-          # authorizer:
-          #   arn: '${file(environment.yml):AUTHORIZER_LAMBDA_ARN}'
-          #   resultTtlInSeconds: 0
-          #   identitySource: method.request.header.Authorization, method.request.header.PlatformTenantId, context.identity.sourceIp
-          #   identityValidationExpression: someRegex
-          #   type: request
-          cors:
-            origin: "*"
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-a
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-              - PlatformTenantId
   hello:
     handler: dist/functions/hello.handler
     events:
@@ -97,8 +67,7 @@ functions:
               - Authorization
               - X-Api-a
               - X-Amz-Security-Token
-              - X-Amz-User-Agent
-              - PlatformTenantId              
+              - X-Amz-User-Agent             
 package:
   artifact: ${opt:artifact,""}
   exclude:
