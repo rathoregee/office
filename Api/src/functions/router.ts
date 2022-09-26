@@ -4,14 +4,14 @@ import {
     APIGatewayProxyEvent,
     APIGatewayProxyResult,
 } from 'aws-lambda';
-import Test from '../lib/db/Test';
+import {DatabaseContext} from '../lib/db/DatabaseContext';
 const handler: APIGatewayProxyHandler = async (
     event: APIGatewayProxyEvent,
     context: Context
 ): Promise<APIGatewayProxyResult> => {
     debugger;
-    const db = new Test();
-    const result = await db.get();
+    const db = new DatabaseContext();
+    const result = await db.GetComapnies();
     console.log(event);
     console.log(context);
     return {
