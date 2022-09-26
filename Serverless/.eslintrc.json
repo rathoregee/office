@@ -16,6 +16,7 @@
     "parserOptions": {
         "ecmaVersion": 2019
     },
+    "ignorePatterns": [ "dist/", "*.js" ],
     "rules": {
         "indent": [
             "error",
