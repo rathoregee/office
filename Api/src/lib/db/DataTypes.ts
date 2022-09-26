@@ -14,3 +14,16 @@ export interface User {
     companyid: string;
     type: string;
 }
+
+export interface Role {
+    id: string;
+    name: string;
+    companyid: string;
+}
+
+export interface Bank {
+    active: string;
+    name: string;
+    companyid: string;
+}
+
