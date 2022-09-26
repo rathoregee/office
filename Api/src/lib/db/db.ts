@@ -1,7 +1,6 @@
 import pgPromise from 'pg-promise';
 import { LoggerConfiguration, ConsoleSink } from 'serilogger';
 const logger = new LoggerConfiguration().writeTo(new ConsoleSink()).create();
-import { Company } from './DataTypes';
 
 const pgp = pgPromise({
     noLocking: true,
@@ -44,13 +43,14 @@ const pgp = pgPromise({
 });
 
 export const db = pgp({
-    host: process.env.PGHOST,
-
-    port: process.env.PGPORT ? Number(process.env.PGPORT) : undefined,
-
-    database: process.env.DATABASE,
-
-    user: process.env.PGUSER,
-
-    password: process.env.PGPASSWORD,
+    //host: process.env.PGHOST,
+    host: 'localhost',
+    //port: process.env.PGPORT ? Number(process.env.PGPORT) : undefined,
+    port: Number(5432),
+    //database: process.env.DATABASE,
+    database: 'postgres',
+    //user: process.env.PGUSER,
+    user: 'postgres',
+    //password: process.env.PGPASSWORD,
+    password: 'postgres',
 });
