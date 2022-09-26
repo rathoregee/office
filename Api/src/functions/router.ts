@@ -4,7 +4,7 @@ import {
     APIGatewayProxyEvent,
     APIGatewayProxyResult,
 } from 'aws-lambda';
-import { Test } from '../lib/db/Test';
+import Test from '../lib/db/Test';
 const handler: APIGatewayProxyHandler = async (
     event: APIGatewayProxyEvent,
     context: Context
@@ -22,6 +22,5 @@ const handler: APIGatewayProxyHandler = async (
         body: JSON.stringify(result),
     };
 };
-
 
 export { handler };

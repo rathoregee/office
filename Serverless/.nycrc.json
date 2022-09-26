@@ -1,0 +1,12 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "extension": [
+    ".ts"
+  ],
+  "reporter": [
+    "lcovonly",
+    "teamcity"
+  ],
+  "check-coverage": false,
+  "all": true
+}

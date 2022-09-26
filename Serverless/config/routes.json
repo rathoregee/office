@@ -1,0 +1,77 @@
+{
+  "routes": [
+    {
+      "route": "UPLOAD_ADDRESS",
+      "entityTypes": [
+        "Address"
+      ]
+    },
+    {
+      "route": "UPLOAD_ADDRESS_MAPPING",
+      "entityTypes": [
+        "AddressMapping"
+      ]
+    },
+    {
+      "route": "UPLOAD_CLIENT",
+      "entityTypes": [
+        "BusinessClient",
+        "PersonClient",
+        "TrustClient",
+        "PersonNonClient",
+        "BusinessNonClient"
+      ]
+    },
+    {
+      "route": "UPLOAD_CLIENT_GROUP",
+      "entityTypes": [
+        "ClientGroup"
+      ]
+    },
+    {
+      "route": "UPLOAD_INVOLVEMENTS",
+      "entityTypes": [
+        "BusinessInvolvement",
+        "PSCInvolvement",
+        "TrustInvolvement",
+        "MarriageInvolvement"
+      ]
+    },
+    {
+      "route": "UPLOAD_STAFF",
+      "entityTypes": [
+        "Staff"
+      ]
+    },
+    {
+      "route": "UPLOAD_CLIENT_TAX_YEAR_DATA",
+      "entityTypes": [
+        "ClientTaxYearData"
+      ]
+    },
+    {
+      "route": "UPLOAD_TAX_RETURN_DATES",
+      "entityTypes": [
+        "TaxReturnDates"
+      ]
+    },
+    {
+      "route": "UPLOAD_TRADE_PARTNERSHIP_DATA",
+      "entityTypes": [
+        "TradePartnershipData"
+      ]
+    },
+    {
+      "route": "UPLOAD_CAPITAL_ASSETS_PTAX_DATA",
+      "entityTypes": [
+        "CapitalAssetsPtaxData"
+      ]
+    },
+    {
+      "route": "UPLOAD_SHAREREGISTER",
+      "entityTypes": [
+        "ShareHolder"
+      ]
+    }    
+  ]
+}
