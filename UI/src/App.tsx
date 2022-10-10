@@ -1,17 +1,18 @@
 
-import { SignIn } from "./pages/SignIn";
+import { SignIn } from './pages/SignIn';
 import { useEffect } from 'react'
-// import { Test } from "./pages/Test";
-import { Sample } from "./pages/pdf";
-import { SuccessPage } from "./pages/Success";
-import { TopBar } from "./pages/TopBar";
-import { Tenency } from "./pages/Tenency";
-import { TenencyList } from "./pages/TenencyList";
-import { useAuth } from "./hooks/useAuth";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { Test } from './pages/Test';
+import { Sample } from './pages/pdf';
+import { Journal } from './pages/Journal';
+import { SuccessPage } from './pages/Success';
+import { TopBar } from './pages/TopBar';
+import { Tenency } from './pages/Tenency';
+import { TenencyList } from './pages/TenencyList';
+import { useAuth } from './hooks/useAuth';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer, { RootState } from './redux/reducers/rootReducer';
 import { fetchEmployees } from './redux/reducers/data';
@@ -57,8 +58,8 @@ const TopPage = () => {
       </ThemeProvider>
       <StyledEngineProvider injectFirst>
         <CssVarsProvider>
-          <div className="App">
-            <header className="App-header">
+          <div className='App'>
+            <header className='App-header'>
               {/* <Test /> */}
               {/* <TenencyList></TenencyList> */}
               {renderedList}
@@ -82,11 +83,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<TopPage />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="success" element={<SuccessPage />}></Route>
-          <Route path="pdf" element={<Sample />}></Route>
-          <Route path="tenency" element={<Tenency />}></Route>
-          <Route path="*" element={<p>Page Not Found</p>} />
+          <Route path='journal' element={<Journal />} />
+          <Route path='signin' element={<SignIn />} />
+          <Route path='success' element={<SuccessPage />}></Route>
+          <Route path='pdf' element={<Sample />}></Route>
+          <Route path='tenency' element={<Tenency />}></Route>
+          <Route path='*' element={<p>Page Not Found</p>} />
         </Routes>
       </BrowserRouter>
     </Provider>
