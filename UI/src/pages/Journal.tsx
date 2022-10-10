@@ -64,11 +64,10 @@ export function Journal() {
             },
         },
         {
-            field: 'dueAt',
-            headerName: 'Detail',
-            type: 'text',
-            width: 500,
-            editable: true,
+            field: 'expense', 
+            headerName: 'Detail', 
+            width: 500, 
+            editable: true 
         },
         {
             field: 'price',
