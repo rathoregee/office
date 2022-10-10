@@ -1,7 +1,7 @@
 
 import { SignIn } from "./pages/SignIn";
-import React, { useEffect } from 'react'
-import { Test } from "./pages/Test";
+import { useEffect } from 'react'
+// import { Test } from "./pages/Test";
 import { Sample } from "./pages/pdf";
 import { SuccessPage } from "./pages/Success";
 import { TopBar } from "./pages/TopBar";
