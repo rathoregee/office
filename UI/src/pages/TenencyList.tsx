@@ -152,81 +152,84 @@ export function TenencyList() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Stack spacing={3}>
           <table>
-            <tr>
-              <td>
-                <DesktopDatePicker
-                  label="From Date"
-                  inputFormat="DD-MM-YYYY"                
-                  value={value}
-                  minDate={dayjs('2017-01-01')}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </td>
-              <td>
-                <DesktopDatePicker
-                  label="To Date"
-                  inputFormat="DD-MM-YYYY"
-                  value={value}
-                  minDate={dayjs('2017-01-01')}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </td>
-              <td>
-                <Box sx={{ minWidth: 200 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Apartment</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age}
-                      label="Apartment"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value={10}>U14</MenuItem>
-                      <MenuItem value={20}>U15</MenuItem>
-                      <MenuItem value={30}>U15</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </td>
-              <td>
-                <Box sx={{ minWidth: 200 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Agent</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age}
-                      label="Agent"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value={10}>Agent 1</MenuItem>
-                      <MenuItem value={20}>Agent 2</MenuItem>
-                      <MenuItem value={30}>Agent 2</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </td>
-              <td>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '75ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DesktopDatePicker
+                    label="From Date"
+                    inputFormat="DD-MM-YYYY"
+                    value={value}
+                    minDate={dayjs('2017-01-01')}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </td>
+                <td>
+                  <DesktopDatePicker
+                    label="To Date"
+                    inputFormat="DD-MM-YYYY"
+                    value={value}
+                    minDate={dayjs('2017-01-01')}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </td>
+                <td>
+                  <Box sx={{ minWidth: 200 }}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Apartment</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Apartment"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={10}>U14</MenuItem>
+                        <MenuItem value={20}>U15</MenuItem>
+                        <MenuItem value={30}>U15</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </td>
+                <td>
+                  <Box sx={{ minWidth: 200 }}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Agent</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Agent"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={10}>Agent 1</MenuItem>
+                        <MenuItem value={20}>Agent 2</MenuItem>
+                        <MenuItem value={30}>Agent 2</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </td>
+                <td>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '75ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
 
-                  <TextField id="standard-basic" label="search" variant="standard" />
-                </Box>
-              </td>
-            </tr>
+                    <TextField id="standard-basic" label="search" variant="standard" />
+                  </Box>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </Stack>
       </LocalizationProvider>
