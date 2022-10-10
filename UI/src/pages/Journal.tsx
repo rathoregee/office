@@ -7,6 +7,7 @@ import { randomPrice } from '@mui/x-data-grid-generator';
 const StyledBox = styled(Box)(({ theme }) => ({
     height: 300,
     width: '100%',
+    backgroundColor: 'white',
     '& .MuiDataGrid-cell--editing': {
         backgroundColor: 'rgb(255,215,115, 0.19)',
         color: '#1a3e72',
@@ -49,31 +50,9 @@ const rows: GridRowsProp = [
 
 export function Journal() {
     const columns: GridColumns = [
-        { field: 'expense', headerName: 'Expense', width: 160, editable: true },
-        {
-            field: 'price',
-            headerName: 'Price',
-            type: 'number',
-            width: 120,
-            editable: true,
-        },
-        {
-            field: 'dueAt',
-            headerName: 'Due at',
-            type: 'date',
-            width: 120,
-            editable: true,
-        },
-        {
-            field: 'isPaid',
-            headerName: 'Is paid?',
-            type: 'boolean',
-            width: 140,
-            editable: true,
-        },
         {
             field: 'paymentMethod',
-            headerName: 'Payment method',
+            headerName: 'Account',
             type: 'singleSelect',
             valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
             width: 160,
@@ -83,6 +62,31 @@ export function Journal() {
                 const hasError = isPaidProps.value && !params.props.value;
                 return { ...params.props, error: hasError };
             },
+        },
+        {
+            field: 'dueAt',
+            headerName: 'Detail',
+            type: 'text',
+            width: 500,
+            editable: true,
+        },
+        {
+            field: 'price',
+            headerName: 'Debit',
+            type: 'number',
+            width: 120,
+            editable: true,
+            headerClassName: 'super-app-theme--header',
+            headerAlign: 'center',
+        },
+        {
+            field: 'price',
+            headerName: 'Credit',
+            type: 'number',
+            width: 120,
+            editable: true,
+            headerClassName: 'super-app-theme--header',
+            headerAlign: 'center',
         },
     ];
 
