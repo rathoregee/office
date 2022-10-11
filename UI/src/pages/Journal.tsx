@@ -16,7 +16,7 @@ const theme = createTheme({
     },
 });
 const StyledBox = styled(Box)(({ theme }) => ({
-  
+
     '& .MuiDataGrid-cell--editing': {
         backgroundColor: 'rgb(255,215,115, 0.19)',
         color: '#1a3e72',
@@ -101,6 +101,12 @@ export function Journal() {
             <div>
                 <div className='jv-header'>
                     <Box sx={{ flexGrow: 1 }}>
+                        <TextField
+                            disabled
+                            id="outlined-disabled"
+                            label="Voucher Number"
+                            defaultValue="000456"
+                        />
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DesktopDatePicker
                                 label="To Date"
@@ -113,14 +119,7 @@ export function Journal() {
                                 renderInput={(params) => <TextField {...params} />}
                             />
                         </LocalizationProvider>
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="Voucher Number"
-                            defaultValue="000456"
-                            size="small"
-                        />
-                        <Button size="small" variant="outlined">Post</Button>
+                        <Button variant="outlined">Post</Button>
                     </Box>
                 </div>
                 <StyledBox>

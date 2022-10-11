@@ -1,3 +1,7 @@
 .jv-header {
     padding: 12px;
 }
+
+Button{
+    margin: 10px !important;
+}
