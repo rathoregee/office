@@ -2,6 +2,10 @@
     padding: 12px;
 }
 
-Button{
+Button {
     margin: 10px !important;
+}
+
+.MuiChip-root {
+    margin-right: 10px !important;
 }

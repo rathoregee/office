@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
 import './Journal.css';
 const theme = createTheme({
     palette: {
@@ -101,6 +102,7 @@ export function Journal() {
             <div>
                 <div className='jv-header'>
                     <Box sx={{ flexGrow: 1 }}>
+                        <Chip label="Journal General" />                   
                         <TextField
                             disabled
                             id="outlined-disabled"
