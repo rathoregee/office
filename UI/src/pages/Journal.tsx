@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
@@ -31,39 +32,42 @@ const StyledBox = styled(Box)(({ theme }) => ({
     },
 }));
 
-const rows: GridRowsProp = [
-    {
-        id: 1,
-        account: 'Credit card',
-        detail: 'Credit card paid',
-        dr: 250.00,
-        cr: 0.00
-    },
-    {
-        id: 2,
-        account: 'Cash',
-        detail: 'Tim Horton dinner',
-        dr: 250.00,
-        cr: 0.00
-    },
-    {
-        id: 3,
-        account: 'Bank transfer',
-        detail: 'Car insurance',
-        dr: 0.00,
-        cr: 500
-    }
-];
-
 let accounts: string[] = ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'];
 
-setTimeout(() => {
 
-    accounts.push('aaaaa');
-
-}, 5000);
 export function Journal() {
-    const [value, setValue] = React.useState<Dayjs | null>(dayjs());
+    const [value, setValue] = useState<Dayjs | null>(dayjs());
+    const [rows, setRows] = useState<any>([]);
+
+    const d = [
+        {
+            id: 1,
+            account: 'Credit card',
+            detail: 'Credit card paid',
+            dr: 250.00,
+            cr: 0.00
+        },
+        {
+            id: 2,
+            account: 'Cash',
+            detail: 'Tim Horton dinner',
+            dr: 250.00,
+            cr: 0.00
+        },
+        {
+            id: 3,
+            account: 'Bank transfer',
+            detail: 'Car insurance',
+            dr: 0.00,
+            cr: 500
+        }
+    ];
+
+    useEffect(() => {
+        setRows(d);
+        accounts.push('aaaaa');
+    }, []);
+
     const columns: GridColumns = [
         {
             field: 'account',
@@ -71,20 +75,20 @@ export function Journal() {
             type: 'singleSelect',
             valueOptions: accounts,
             width: 350,
-            resizable: true,
+
             sortable: false,
             editable: true,
-            preProcessEditCellProps: (params) => {
-                const isPaidProps = params.otherFieldsProps!.isPaid;
-                const hasError = isPaidProps.value && !params.props.value;
-                return { ...params.props, error: hasError };
-            },
+            // preProcessEditCellProps: (params) => {
+            //     const isPaidProps = params.otherFieldsProps!.isPaid;
+            //     const hasError = isPaidProps.value && !params.props.value;
+            //     return { ...params.props, error: hasError };
+            // },
         },
         {
             field: 'detail',
             headerName: 'Detail',
             width: 800,
-            resizable: true,
+
             sortable: false,
             editable: true
         },
@@ -93,7 +97,7 @@ export function Journal() {
             headerName: 'Debit',
             type: 'number',
             width: 120,
-            resizable: true,
+
             sortable: false,
             editable: true,
             headerClassName: 'super-app-theme--header',
@@ -104,7 +108,7 @@ export function Journal() {
             headerName: 'Credit',
             type: 'number',
             width: 120,
-            resizable: true,
+
             sortable: false,
             editable: true,
             headerClassName: 'super-app-theme--header',
