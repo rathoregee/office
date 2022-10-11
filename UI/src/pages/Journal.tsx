@@ -142,12 +142,18 @@ export function Journal() {
                         </div>
                     </Box>
                 </div>
-                <StyledBox sx={{ height: 400 }}>
+                <StyledBox style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         autoHeight={true}
+                        rowHeight={25}
                         rows={rows}
                         columns={columns}
                         experimentalFeatures={{ newEditingApi: true }}
+                        initialState={{
+                            pagination: {
+                                pageSize: 15,
+                            },
+                        }}
                     />
                     <Box sx={{ maxWidth: '100%' }}>
                         <TextField fullWidth label="Comments" id="fullWidth" />
