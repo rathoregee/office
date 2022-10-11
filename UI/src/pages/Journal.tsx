@@ -6,6 +6,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import dayjs, { Dayjs } from 'dayjs';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -56,6 +60,7 @@ const rows: GridRowsProp = [
 ];
 
 export function Journal() {
+    const [value, setValue] = React.useState<Dayjs | null>(dayjs());
     const columns: GridColumns = [
         {
             field: 'account',
@@ -101,7 +106,20 @@ export function Journal() {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid xs={2}>
-                        <Item>xs=8</Item>
+                        <Item>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DesktopDatePicker
+                                label="To Date"
+                                inputFormat="DD-MM-YYYY"
+                                value={value}
+                                minDate={dayjs('2017-01-01')}
+                                onChange={(newValue) => {
+                                    setValue(newValue);
+                                }}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </LocalizationProvider>
+                        </Item>
                     </Grid>
                     <Grid xs={2}>
                         <Item>
@@ -109,7 +127,7 @@ export function Journal() {
                                 disabled
                                 id="outlined-disabled"
                                 label="Voucher Number"
-                                defaultValue="Hello World"
+                                defaultValue="000456"
                             /></Item>
                     </Grid>
                     <Grid xs={2}>
