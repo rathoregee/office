@@ -9,3 +9,8 @@
 .MuiChip-root {
     margin-right: 10px !important;
 }
+
+.right-section{
+    text-align: right;
+    float: right;
+}

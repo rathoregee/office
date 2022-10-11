@@ -18,10 +18,11 @@ const theme = createTheme({
     },
 });
 const StyledBox = styled(Box)(({ theme }) => ({
-
+    maxHeight: 400,
     '& .MuiDataGrid-cell--editing': {
         backgroundColor: 'rgb(255,215,115, 0.19)',
         color: '#1a3e72',
+
         '& .MuiInputBase-root': {
             height: '100%',
         },
@@ -33,38 +34,22 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 let accounts: string[] = ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'];
-
-
 export function Journal() {
     const [value, setValue] = useState<Dayjs | null>(dayjs());
     const [rows, setRows] = useState<any>([]);
-
-    const d = [
-        {
-            id: 1,
-            account: 'Credit card',
-            detail: 'Credit card paid',
-            dr: 250.00,
-            cr: 0.00
-        },
-        {
-            id: 2,
-            account: 'Cash',
-            detail: 'Tim Horton dinner',
-            dr: 250.00,
-            cr: 0.00
-        },
-        {
-            id: 3,
-            account: 'Bank transfer',
-            detail: 'Car insurance',
-            dr: 0.00,
-            cr: 500
-        }
-    ];
-
     useEffect(() => {
-        setRows(d);
+        const arr = [];
+
+        for (let i = 0; i < 100; i++) {
+            arr.push({
+                id: i,
+                account: 'Credit card',
+                detail: '',
+                dr: 0.00,
+                cr: 0.00
+            });
+        }
+        setRows(arr);
         accounts.push('aaaaa');
     }, []);
 
@@ -141,21 +126,23 @@ export function Journal() {
                             />
                         </LocalizationProvider>
                         <Button variant="outlined">Post</Button>
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="Total Debit"
-                            defaultValue="500.00"
-                        />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="Total Credit"
-                            defaultValue="500.00"
-                        />
+                        <div className='right-section'>
+                            <TextField
+                                disabled
+                                id="outlined-disabled"
+                                label="Total Debit"
+                                defaultValue="500.00"
+                            />
+                            <TextField
+                                disabled
+                                id="outlined-disabled"
+                                label="Total Credit"
+                                defaultValue="500.00"
+                            />
+                        </div>
                     </Box>
                 </div>
-                <StyledBox>
+                <StyledBox sx={{ height: 400 }}>
                     <DataGrid
                         autoHeight={true}
                         rows={rows}
