@@ -2,25 +2,21 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColumns, GridRowsProp } from '@mui/x-data-grid';
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import './Journal.css';
+const theme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 const StyledBox = styled(Box)(({ theme }) => ({
-
-    backgroundColor: 'white',
+  
     '& .MuiDataGrid-cell--editing': {
         backgroundColor: 'rgb(255,215,115, 0.19)',
         color: '#1a3e72',
@@ -55,7 +51,6 @@ const rows: GridRowsProp = [
         detail: 'Car insurance',
         dr: 0.00,
         cr: 500
-
     }
 ];
 
@@ -102,11 +97,10 @@ export function Journal() {
     ];
 
     return (
-        <StyledBox>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid xs={2}>
-                        <Item>
+        <ThemeProvider theme={theme}>
+            <div>
+                <div className='jv-header'>
+                    <Box sx={{ flexGrow: 1 }}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DesktopDatePicker
                                 label="To Date"
@@ -119,34 +113,30 @@ export function Journal() {
                                 renderInput={(params) => <TextField {...params} />}
                             />
                         </LocalizationProvider>
-                        </Item>
-                    </Grid>
-                    <Grid xs={2}>
-                        <Item>
-                            <TextField
-                                disabled
-                                id="outlined-disabled"
-                                label="Voucher Number"
-                                defaultValue="000456"
-                            /></Item>
-                    </Grid>
-                    <Grid xs={2}>
-                        <Item><Button size="small" variant="outlined">Post</Button></Item>
-                    </Grid>
-                </Grid>
-            </Box>
-            <br></br>
-            <DataGrid
-                autoHeight={true}
-                rows={rows}
-                columns={columns}
-                experimentalFeatures={{ newEditingApi: true }}
-            />
-            <Box sx={{ maxWidth: '100%' }}>
-                <TextField fullWidth label="Comments" id="fullWidth" />
-            </Box>
-            <br></br>
+                        <TextField
+                            disabled
+                            id="outlined-disabled"
+                            label="Voucher Number"
+                            defaultValue="000456"
+                            size="small"
+                        />
+                        <Button size="small" variant="outlined">Post</Button>
+                    </Box>
+                </div>
+                <StyledBox>
+                    <DataGrid
+                        autoHeight={true}
+                        rows={rows}
+                        columns={columns}
+                        experimentalFeatures={{ newEditingApi: true }}
+                    />
+                    <Box sx={{ maxWidth: '100%' }}>
+                        <TextField fullWidth label="Comments" id="fullWidth" />
+                    </Box>
+                    <br></br>
 
-        </StyledBox>
+                </StyledBox>
+            </div>
+        </ThemeProvider>
     );
 }
