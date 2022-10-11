@@ -64,6 +64,8 @@ export function Journal() {
             type: 'singleSelect',
             valueOptions: ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'],
             width: 350,
+            resizable: true,
+            sortable: false,
             editable: true,
             preProcessEditCellProps: (params) => {
                 const isPaidProps = params.otherFieldsProps!.isPaid;
@@ -75,6 +77,8 @@ export function Journal() {
             field: 'detail',
             headerName: 'Detail',
             width: 800,
+            resizable: true,
+            sortable: false,
             editable: true
         },
         {
@@ -82,6 +86,8 @@ export function Journal() {
             headerName: 'Debit',
             type: 'number',
             width: 120,
+            resizable: true,
+            sortable: false,
             editable: true,
             headerClassName: 'super-app-theme--header',
             headerAlign: 'center',
@@ -91,6 +97,8 @@ export function Journal() {
             headerName: 'Credit',
             type: 'number',
             width: 120,
+            resizable: true,
+            sortable: false,
             editable: true,
             headerClassName: 'super-app-theme--header',
             headerAlign: 'center',
@@ -102,7 +110,7 @@ export function Journal() {
             <div>
                 <div className='jv-header'>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Chip label="Journal General" />                   
+                        <Chip label="Journal General" />
                         <TextField
                             disabled
                             id="outlined-disabled"

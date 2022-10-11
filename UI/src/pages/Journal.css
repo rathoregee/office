@@ -2,7 +2,7 @@
     padding: 12px;
 }
 
-Button {
+.MuiButton-outlined {
     margin: 10px !important;
 }
 
