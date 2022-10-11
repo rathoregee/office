@@ -24,38 +24,36 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const rows: GridRowsProp = [
     {
         id: 1,
-        expense: 'Light bill',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 6, 8),
-        isPaid: false,
-        paymentMethod: '',
+        account: 'Credit card',
+        detail: 'Credit card paid',
+        dr: 250.00,
+        cr: 0.00
     },
     {
         id: 2,
-        expense: 'Rent',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 7, 1),
-        isPaid: false,
-        paymentMethod: '',
+        account: 'Cash',
+        detail: 'Tim Horton dinner',
+        dr: 250.00,
+        cr: 0.00
     },
     {
         id: 3,
-        expense: 'Car insurance',
-        price: randomPrice(0, 1000),
-        dueAt: new Date(2021, 7, 4),
-        isPaid: true,
-        paymentMethod: 'Wire transfer',
+        account: 'Bank transfer',
+        detail: 'Car insurance',
+        dr: 0.00,
+        cr: 500
+
     },
 ];
 
 export function Journal() {
     const columns: GridColumns = [
         {
-            field: 'paymentMethod',
+            field: 'account',
             headerName: 'Account',
             type: 'singleSelect',
-            valueOptions: ['Credit card', 'Wire transfer', 'Cash'],
-            width: 160,
+            valueOptions: ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'],
+            width: 350,
             editable: true,
             preProcessEditCellProps: (params) => {
                 const isPaidProps = params.otherFieldsProps!.isPaid;
@@ -64,13 +62,13 @@ export function Journal() {
             },
         },
         {
-            field: 'expense', 
-            headerName: 'Detail', 
-            width: 500, 
-            editable: true 
+            field: 'detail',
+            headerName: 'Detail',
+            width: 800,
+            editable: true
         },
         {
-            field: 'price',
+            field: 'dr',
             headerName: 'Debit',
             type: 'number',
             width: 120,
@@ -79,7 +77,7 @@ export function Journal() {
             headerAlign: 'center',
         },
         {
-            field: 'price',
+            field: 'cr',
             headerName: 'Credit',
             type: 'number',
             width: 120,
@@ -94,7 +92,6 @@ export function Journal() {
             <DataGrid
                 rows={rows}
                 columns={columns}
-                editMode="row"
                 experimentalFeatures={{ newEditingApi: true }}
             />
         </StyledBox>
