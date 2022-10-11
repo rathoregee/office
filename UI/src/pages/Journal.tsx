@@ -107,7 +107,7 @@ export function Journal() {
 
     return (
         <ThemeProvider theme={theme}>
-            <div>
+            <div className='jv-header'>
                 <div className='jv-header'>
                     <Box sx={{ flexGrow: 1 }}>
                         <Chip label="Journal General" />
