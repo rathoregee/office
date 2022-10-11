@@ -55,6 +55,13 @@ const rows: GridRowsProp = [
     }
 ];
 
+let accounts: string[] = ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'];
+
+setTimeout(() => {
+
+    accounts.push('aaaaa');
+
+}, 5000);
 export function Journal() {
     const [value, setValue] = React.useState<Dayjs | null>(dayjs());
     const columns: GridColumns = [
@@ -62,7 +69,7 @@ export function Journal() {
             field: 'account',
             headerName: 'Account',
             type: 'singleSelect',
-            valueOptions: ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'],
+            valueOptions: accounts,
             width: 350,
             resizable: true,
             sortable: false,
@@ -130,6 +137,18 @@ export function Journal() {
                             />
                         </LocalizationProvider>
                         <Button variant="outlined">Post</Button>
+                        <TextField
+                            disabled
+                            id="outlined-disabled"
+                            label="Total Debit"
+                            defaultValue="500.00"
+                        />
+                        <TextField
+                            disabled
+                            id="outlined-disabled"
+                            label="Total Credit"
+                            defaultValue="500.00"
+                        />
                     </Box>
                 </div>
                 <StyledBox>
