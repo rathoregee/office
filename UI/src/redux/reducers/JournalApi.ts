@@ -8,7 +8,7 @@ export interface Account {
   typeId: string;
 }
 
-interface AccountResult {
+export interface AccountResult {
   employees: Account[];
 }
 
