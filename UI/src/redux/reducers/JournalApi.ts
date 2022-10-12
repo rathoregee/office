@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-export interface Account {
+ interface Account {
   id: string;
   name: string;
   parentId: string;
@@ -14,14 +14,12 @@ export interface AccountResult {
 }
 
 export async function getAccounts(): Promise<AccountResult> {
-  var config = {
-    headers: {'Access-Control-Allow-Origin': '*'}
-  };
+ 
+  
   const url = 'http://localhost:5000/v1/accounts';  
   try {    
-    const employeesResponse = await axios.get<{ data: AccountResult }>(url, config);
-    debugger
-    return  employeesResponse.data.data;
+    const employeesResponse = await axios.get<AccountResult>(url);
+    return  employeesResponse.data;
   } catch (err) {
     throw err;
   }
