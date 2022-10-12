@@ -10,8 +10,19 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer, { RootState } from '../redux/reducers/rootReducer';
+import { fetchAccounts } from '../redux/reducers/JournalReducer';
+import { Provider, useSelector, useDispatch } from 'react-redux';
 import Chip from '@mui/material/Chip';
 import './Journal.css';
+
+const store = configureStore({
+    reducer: rootReducer,
+});
+
+export type AppDispatch = typeof store.dispatch;
+
 const theme = createTheme({
     palette: {
         mode: 'dark',
@@ -33,13 +44,17 @@ const StyledBox = styled(Box)(({ theme }) => ({
     },
 }));
 
-let accounts: string[] = ['Loan Payment', 'Credit card', 'Bank transfer', 'Cash'];
+
 export function Journal() {
     const [value, setValue] = useState<Dayjs | null>(dayjs());
     const [rows, setRows] = useState<any>([]);
-    useEffect(() => {
-        const arr = [];
+    const dispatch = useDispatch<AppDispatch>();
+    const { accounts, loading } = useSelector((state: RootState) => state.accounts);
 
+    useEffect(() => {
+        dispatch(fetchAccounts());
+        console.log(accounts);
+        const arr = [];
         for (let i = 0; i < 100; i++) {
             arr.push({
                 id: i,
@@ -50,15 +65,15 @@ export function Journal() {
             });
         }
         setRows(arr);
-        accounts.push('aaaaa');
-    }, []);
+    }, [dispatch])
+
 
     const columns: GridColumns = [
         {
             field: 'account',
             headerName: 'Account',
             type: 'singleSelect',
-            valueOptions: accounts,
+            valueOptions: [],
             width: 350,
 
             sortable: false,
@@ -102,66 +117,68 @@ export function Journal() {
     ];
 
     return (
-        <ThemeProvider theme={theme}>
-            <div className='jv-header'>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
                 <div className='jv-header'>
-                    <Box sx={{ flexGrow: 1 }}>
-                        <Chip label="Journal General" />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="Voucher Number"
-                            defaultValue="000456"
+                    <div className='jv-header'>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Chip label="Journal General" />
+                            <TextField
+                                disabled
+                                id="outlined-disabled"
+                                label="Voucher Number"
+                                defaultValue="000456"
+                            />
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DesktopDatePicker
+                                    label="To Date"
+                                    inputFormat="DD-MM-YYYY"
+                                    value={value}
+                                    minDate={dayjs('2017-01-01')}
+                                    onChange={(newValue) => {
+                                        setValue(newValue);
+                                    }}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                            </LocalizationProvider>
+                            <Button variant="outlined">Post</Button>
+                            <div className='right-section'>
+                                <TextField
+                                    disabled
+                                    id="outlined-disabled"
+                                    label="Total Debit"
+                                    defaultValue="500.00"
+                                />
+                                <TextField
+                                    disabled
+                                    id="outlined-disabled"
+                                    label="Total Credit"
+                                    defaultValue="500.00"
+                                />
+                            </div>
+                        </Box>
+                    </div>
+                    <StyledBox style={{ height: 400, width: '100%' }}>
+                        <DataGrid
+                            autoHeight={true}
+                            rowHeight={25}
+                            rows={rows}
+                            columns={columns}
+                            experimentalFeatures={{ newEditingApi: true }}
+                            initialState={{
+                                pagination: {
+                                    pageSize: 15,
+                                },
+                            }}
                         />
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DesktopDatePicker
-                                label="To Date"
-                                inputFormat="DD-MM-YYYY"
-                                value={value}
-                                minDate={dayjs('2017-01-01')}
-                                onChange={(newValue) => {
-                                    setValue(newValue);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                        <Button variant="outlined">Post</Button>
-                        <div className='right-section'>
-                            <TextField
-                                disabled
-                                id="outlined-disabled"
-                                label="Total Debit"
-                                defaultValue="500.00"
-                            />
-                            <TextField
-                                disabled
-                                id="outlined-disabled"
-                                label="Total Credit"
-                                defaultValue="500.00"
-                            />
-                        </div>
-                    </Box>
-                </div>
-                <StyledBox style={{ height: 400, width: '100%' }}>
-                    <DataGrid
-                        autoHeight={true}
-                        rowHeight={25}
-                        rows={rows}
-                        columns={columns}
-                        experimentalFeatures={{ newEditingApi: true }}
-                        initialState={{
-                            pagination: {
-                                pageSize: 15,
-                            },
-                        }}
-                    />
-                    <Box sx={{ maxWidth: '100%' }}>
-                        <TextField fullWidth label="Comments" id="fullWidth" />
-                    </Box>
-                    <br></br>
+                        <Box sx={{ maxWidth: '100%' }}>
+                            <TextField fullWidth label="Comments" id="fullWidth" />
+                        </Box>
+                        <br></br>
 
-                </StyledBox>
-            </div>
-        </ThemeProvider>
+                    </StyledBox>
+                </div>
+            </ThemeProvider>
+        </Provider>
     );
 }

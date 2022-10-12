@@ -15,7 +15,7 @@ const initialState: AccountsState = {
     error: null,
 };
 
-export const fetchEmployees = createAsyncThunk(
+export const fetchAccounts = createAsyncThunk(
     'accounts/fetch',
     async (_, thunkAPI) => {
         const response = await getAccounts();
@@ -29,18 +29,18 @@ export const accountsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchEmployees.pending, (state) => {
+            .addCase(fetchAccounts.pending, (state) => {
                 if (state.loading === 'idle') {
                     state.loading = 'pending';
                 }
             })
-            .addCase(fetchEmployees.fulfilled, (state, action) => {
+            .addCase(fetchAccounts.fulfilled, (state, action) => {
                 if (state.loading === 'pending') {
                     state.loading = 'idle';
                 }
                 state.accounts = action.payload;
             })
-            .addCase(fetchEmployees.rejected, (state, action) => {
+            .addCase(fetchAccounts.rejected, (state, action) => {
                 if (state.loading === 'pending') {
                     state.loading = 'idle';
                     state.error = action.error.message || null;
