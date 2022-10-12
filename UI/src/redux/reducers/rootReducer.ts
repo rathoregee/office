@@ -1,7 +1,7 @@
 
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { employeesSlice } from './data'
+import { employeesSlice } from './sampleReducer'
 
 const rootReducer = combineReducers({
   employees: employeesSlice.reducer,

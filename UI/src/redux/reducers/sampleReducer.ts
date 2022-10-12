@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getEmployees, Employee } from './api';
+import { getEmployees, Employee } from './sampleApi';
 
 // Requesting all employees, with loading state, and only one request at a time
 

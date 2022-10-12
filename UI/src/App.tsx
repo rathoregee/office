@@ -15,7 +15,7 @@ import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer, { RootState } from './redux/reducers/rootReducer';
-import { fetchEmployees } from './redux/reducers/data';
+import { fetchEmployees } from './redux/reducers/sampleReducer';
 
 import { Provider, useSelector, useDispatch } from 'react-redux';
 

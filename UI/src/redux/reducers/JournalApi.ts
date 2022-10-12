@@ -12,7 +12,7 @@ interface AccountResult {
   employees: Account[];
 }
 
-export async function getEmployees(): Promise<AccountResult> {
+export async function getAccounts(): Promise<AccountResult> {
   const url = 'http://localhost:5000/v1/accounts';  
   try {
     const employeesResponse = await axios.get<{ data: AccountResult }>(url);
