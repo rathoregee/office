@@ -15,6 +15,7 @@ import rootReducer, { RootState } from '../redux/reducers/rootReducer';
 import { fetchAccounts } from '../redux/reducers/JournalReducer';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import Chip from '@mui/material/Chip';
+import CircularProgress from '@mui/material/CircularProgress';
 import './Journal.css';
 
 const store = configureStore({
@@ -70,7 +71,7 @@ export function Journal() {
 
     useEffect(() => {
         if (!!accounts.accounts) {
-            setList(accounts.accounts.map(key => { return key.name }));            
+            setList(accounts.accounts.map(key => { return key.name }));
         }
 
     }, [accounts]);
@@ -146,6 +147,7 @@ export function Journal() {
                                 />
                             </LocalizationProvider>
                             <Button variant="outlined">Post</Button>
+                            <CircularProgress className={loading == 'idle' ? 'force-hidden' : ''} />
                             <div className='right-section'>
                                 <TextField
                                     disabled
@@ -179,7 +181,6 @@ export function Journal() {
                             <TextField fullWidth label="Comments" id="fullWidth" />
                         </Box>
                         <br></br>
-
                     </StyledBox>
                 </div>
             </ThemeProvider>

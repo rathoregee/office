@@ -10,7 +10,11 @@
     margin-right: 10px !important;
 }
 
-.right-section{
+.right-section {
     text-align: right;
     float: right;
+}
+
+.force-hidden {
+    display: none !important;
 }
