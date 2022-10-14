@@ -62,7 +62,7 @@ const TopPage = () => {
             <header className='App-header'>
               {/* <Test /> */}
               {/* <TenencyList></TenencyList> */}
-              {renderedList}
+              {/* {renderedList} */}
             </header>
           </div>
         </CssVarsProvider>

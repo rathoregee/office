@@ -147,7 +147,6 @@ const Prints = () => (
 
 const print = () => {
   const string = renderToString(<Prints />);
-  debugger
   const pdf = new jsPDF("p", "mm", "a4");
 
   pdf.html(string, {
