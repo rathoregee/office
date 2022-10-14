@@ -50,10 +50,10 @@ export function Journal() {
     const [rows, setRows] = useState<any>([]);
     const dispatch = useDispatch<AppDispatch>();
     const { accounts, loading } = useSelector((state: RootState) => state.accounts);
+    const [list, setList] = useState<any>([]);
 
     useEffect(() => {
         dispatch(fetchAccounts());
-        console.log(accounts);
         const arr = [];
         for (let i = 0; i < 100; i++) {
             arr.push({
@@ -68,14 +68,21 @@ export function Journal() {
     }, [dispatch])
 
 
+    useEffect(() => {
+        if (!!accounts.accounts) {
+            setList(accounts.accounts.map(key => { return key.name }));            
+        }
+
+    }, [accounts]);
+
+
     const columns: GridColumns = [
         {
             field: 'account',
             headerName: 'Account',
             type: 'singleSelect',
-            valueOptions: [],
+            valueOptions: list,
             width: 350,
-
             sortable: false,
             editable: true,
             // preProcessEditCellProps: (params) => {
@@ -88,7 +95,6 @@ export function Journal() {
             field: 'detail',
             headerName: 'Detail',
             width: 800,
-
             sortable: false,
             editable: true
         },
@@ -97,7 +103,6 @@ export function Journal() {
             headerName: 'Debit',
             type: 'number',
             width: 120,
-
             sortable: false,
             editable: true,
             headerClassName: 'super-app-theme--header',
@@ -108,7 +113,6 @@ export function Journal() {
             headerName: 'Credit',
             type: 'number',
             width: 120,
-
             sortable: false,
             editable: true,
             headerClassName: 'super-app-theme--header',
